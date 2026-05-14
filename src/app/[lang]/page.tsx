@@ -4,6 +4,8 @@ import { FooterNav } from "@/components/footer-nav";
 import { HeroSection } from "@/components/hero-section";
 import { PhotoGallery } from "@/components/photo-gallery";
 import { getLabels } from "@/lib/i18n";
+import { client } from "@/lib/microcms";
+import type { Article } from "@/lib/types";
 
 export default function TopPage({
   params,
@@ -20,6 +22,12 @@ async function TopPageContent({
 }) {
   const { lang } = await params;
   const labels = getLabels(lang);
+
+  const { contents } = await client.getList({
+    endpoint: "blog",
+    queries: { limit: 4, orders: "-publishedAt" },
+  });
+  const latestArticles = contents as unknown as Article[];
 
   return (
     <main>
@@ -46,7 +54,7 @@ async function TopPageContent({
         </div>
       </section>
 
-      <PhotoGallery lang={lang} />
+      <PhotoGallery lang={lang} articles={latestArticles} />
 
       <FooterNav lang={lang} />
     </main>
