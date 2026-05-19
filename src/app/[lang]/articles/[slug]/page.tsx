@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { CitySpotList } from "@/components/city-spot-list";
+import { FooterNav } from "@/components/footer-nav";
 import RouteMap from "./map";
 import { getLabels } from "@/lib/i18n";
 import type { Article } from "@/lib/types";
@@ -57,7 +58,7 @@ async function ArticleDetailContent({
   const body =  lang === "ja" ? article.article_ja : article.article_en;
 
   return (
-    <main className="max-w-3xl mx-auto px-4 py-16 space-y-8">
+    <><main className="max-w-3xl mx-auto px-4 py-32 space-y-8">
       {/* Title + Date */}
       <div className="space-y-2">
         <h1 className="text-3xl font-bold">{title}</h1>
@@ -78,8 +79,7 @@ async function ArticleDetailContent({
       {/* Introduction */}
       {introduction ? (
         <div
-          dangerouslySetInnerHTML={{ __html: introduction }}
-        />
+          dangerouslySetInnerHTML={{ __html: introduction }} />
       ) : null}
 
       {/* City Spot List */}
@@ -88,17 +88,20 @@ async function ArticleDetailContent({
       {/* Route Map */}
       <RouteMap
         initialViewState={article.initial_view_state}
-        geojsonData={article.geojson}
-      />
+        geojsonData={article.geojson} />
 
       <Separator />
 
-      {/* Body */}      
-      <div
-        className="prose dark:prose-invert max-w-none"
-        dangerouslySetInnerHTML={{ __html: body }}
-      />
-     
+      {/* Body */}
+      {body ? (
+        <div
+          className="prose dark:prose-invert max-w-none"
+          dangerouslySetInnerHTML={{ __html: body }} />
+      ) : null}
     </main>
+
+    <div className="max-w-3xl mx-auto">
+      <FooterNav lang={lang} />
+    </div></>
   );
 }

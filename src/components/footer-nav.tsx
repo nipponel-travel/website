@@ -4,10 +4,10 @@ import { getLabels } from "@/lib/i18n";
 export function FooterNav({ lang }: { lang: string }) {
   const labels = getLabels(lang);
   const linkClass =
-    "text-lg font-bold px-4 py-2 hover:text-primary transition-colors";
+    "text-xl font-normal px-4 py-2 hover:text-primary transition-colors";
 
   return (
-    <footer className="py-12 flex justify-center gap-6">
+    <footer className="py-12 flex flex-wrap justify-start gap-1 sm:gap-6">
       <Link href={`/${lang}/articles`} className={linkClass}>
         ARTICLES
       </Link>

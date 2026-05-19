@@ -22,6 +22,12 @@ export function Menu() {
 
   return (
     <>
+      <div className="fixed top-4 left-4 z-50 flex items-center h-10">
+        <Link href={`/${lang}`} className="w-32 h-10 bg-gray-200 rounded flex items-center justify-center text-sm text-gray-500 hover:bg-gray-300 transition-colors">
+          LOGO
+        </Link>
+      </div>
+
       <button
         onClick={toggleMenu}
         className="fixed top-4 right-4 z-50 w-10 h-10 flex flex-col justify-center items-center hover:opacity-80 transition-opacity duration-300"

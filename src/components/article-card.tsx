@@ -21,13 +21,13 @@ export function ArticleCard({
 
   return (
     <Link href={`/${lang}/articles/${article.id}`}>
-      <Card className="px-4 flex flex-col md:flex-row overflow-hidden hover:bg-accent transition-colors cursor-pointer">
+      <Card className="px-4 flex flex-col md:flex-row overflow-hidden hover:bg-accent transition-colors cursor-pointer rounded-none">
         <div className="relative w-full md:w-48 h-48 md:h-auto shrink-0">
           <Image
             src={article.thumbnail.url}
             alt={title}
             fill
-            className="object-cover rounded-md"
+            className="object-cover"
             sizes="(max-width: 768px) 100vw, 192px"
           />
         </div>
